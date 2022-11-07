@@ -139,10 +139,10 @@ public class AdminDaoImpl extends DBConnection implements AdminDao {
 //	}
 
 	@Override
-	public List<InvoiceModel> getInvoiceRoom(String maphong) {
+	public InvoiceModel getInvoiceRoom(String maphong) {
 		// TODO Auto-generated method stub
-		List<InvoiceModel> ListInvoice = new ArrayList<InvoiceModel>();
-		String sql = "SELECT * FROM HoaDon where MaPhong=?";
+		//InvoiceModel Invoice = new InvoiceModel();
+		String sql = "select * from HoaDon where MaPhong=?";
 		try {
 			Connection con = super.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -156,22 +156,28 @@ public class AdminDaoImpl extends DBConnection implements AdminDao {
 				invoice.setMaphong(rs.getString("MaPhong"));
 				invoice.setNgaytao(rs.getDate("NgayTao"));
 				invoice.setTrangthai(rs.getInt("TrangThai"));
-				ListInvoice.add(invoice);
+				return invoice;
 			}
-			return ListInvoice;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-//	public static void main(String[] args) {
-//		AdminDaoImpl admin = new AdminDaoImpl();
-//		InvoiceModel inv = new InvoiceModel();
-//		List<InvoiceModel> lst = admin.getInvoiceRoom("P102");
-////		System.out.print(getInvoiceRoom("P102"));
-//		//System.out.println(Arrays.toString(.toArray()));
-//		for(int i=0;i<lst.size();i++){
-//		    System.out.println(lst.get(i));
-//		} 
-//	}
+
+	@Override
+	public void UpdateInvoice(InvoiceModel invoicemodel) {
+		// TODO Auto-generated method stub
+		String sql = "UPDATE HoaDon SET TrangThai = ? WHERE MaPhong = ?";
+		try {
+			Connection con = super.getConnection();
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, invoicemodel.getTrangthai());
+			ps.setString(2, invoicemodel.getMaphong());
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

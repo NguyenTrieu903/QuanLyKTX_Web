@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@include file="/common/taglib.jsp"%>
+<%@include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,26 +24,24 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${ListInvoice}" var="invoice">
 					<tr>
-						<td>${invoice.mahd}</td>
-						<td>${invoice.maphong}</td>
-						<td>${invoice.tiendien}</td>
-						<td>${invoice.tiennuoc}</td>
-						<td>${invoice.ngaytao}</td>
+						<td>${Invoice.mahd}</td>
+						<td>${Invoice.maphong}</td>
+						<td>${Invoice.tiendien}</td>
+						<td>${Invoice.tiennuoc}</td>
+						<td>${Invoice.ngaytao}</td>
 						<td>
-							<c:if test="${invoice.trangthai == 1}">
+							<c:if test="${Invoice.trangthai == 1}">
 								Chưa thanh toán
 							</c:if>
-							<c:if test="${invoice.trangthai == 0}">
+							<c:if test="${Invoice.trangthai == 0}">
 								Đã thanh toán
 							</c:if>
 						</td>
 						<td>
-							<a href="<c:url value='/admin/room/update?maphong=${room.maphong}'/>" class="center">Cập nhật</a>
+							<a href="<c:url value='/admin/room/update/invoice?maphong=${Invoice.maphong}'/>" class="center">Cập nhật</a>
 						</td>
 					</tr>
-				</c:forEach>
 			</tbody>
 		</table>
 	</div>

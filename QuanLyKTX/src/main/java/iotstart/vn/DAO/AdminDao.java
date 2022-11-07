@@ -12,5 +12,6 @@ public interface AdminDao {
 	void UpdateRoom(RoomModel roommodel);
 	RoomModel getRoom(String maphong);
 	int CheckDebt(String maphong);
-	List<InvoiceModel> getInvoiceRoom (String maphong);
+	InvoiceModel getInvoiceRoom (String maphong);
+	void UpdateInvoice(InvoiceModel invoicemodel);
 }

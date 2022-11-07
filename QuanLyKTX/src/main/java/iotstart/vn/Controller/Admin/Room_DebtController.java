@@ -28,10 +28,16 @@ public class Room_DebtController extends HttpServlet{
 		// TODO Auto-generated method stub
 		//super.doGet(req, resp);
 		String maphong = req.getParameter("maphong");
-		List<InvoiceModel> ListInvoice = adminservice.getInvoiceRoom(maphong);
-		req.setAttribute("ListInvoice", ListInvoice);
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/room-debt.jsp");
-		dispatcher.forward(req, resp);
+		InvoiceModel Invoice = adminservice.getInvoiceRoom(maphong);
+		//int ktra = adminservice.CheckDebt(maphong);
+//		if (ktra == 0) {
+//			RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/clear-room-debt.jsp");
+//			dispatcher.forward(req, resp);
+//		}else {
+			req.setAttribute("Invoice", Invoice);
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/room-debt.jsp");
+			dispatcher.forward(req, resp);
+//		}
 	}
 
 	@Override

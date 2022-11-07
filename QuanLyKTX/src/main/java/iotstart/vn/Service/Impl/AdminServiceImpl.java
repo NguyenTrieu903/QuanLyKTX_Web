@@ -48,11 +48,15 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<InvoiceModel> getInvoiceRoom(String maphong) {
+	public InvoiceModel getInvoiceRoom(String maphong) {
 		// TODO Auto-generated method stub
 		return admindao.getInvoiceRoom(maphong);
 	}
 
-	
-
+	@Override
+	public void UpdateInvoice(InvoiceModel invoicemodel) {
+		// TODO Auto-generated method stub
+		admindao.UpdateInvoice(invoicemodel);
+		
+	}
 }
